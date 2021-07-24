@@ -97,7 +97,7 @@ class Product extends React.Component {
       return (
         val.productName
           .toLowerCase()
-          .includes(this.state.searchProductName.toLowerCase()) &&
+          .includes(this.state.searchProductName.toLowerCase().toString()) &&
         val.category
           .toLowerCase()
           .includes(this.state.searchCategory.toLowerCase())
@@ -117,13 +117,86 @@ class Product extends React.Component {
 
   render() {
     return (
-      <div>
-        <main>
-          <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-            {this.renderProducts()}
-            {/* <!-- /End replace --> */}
+      <div className="max-w-md mx-auto overflow-hidden md:max-w-6xl md:my-4 md:flex md:flex-row">
+        <div className="md:flex md:flex-col mt-4">
+          <div className="md:flex-shrink-0">
+            <div className="text-start p-3 bg-gray-300">
+              <strong>Filter Product</strong>
+            </div>
+            <div className="flex flex-col bg-gray-100 p-5">
+              <label htmlFor="searchProductName">Product Name</label>
+              <input
+                onChange={this.inputHandler}
+                type="text"
+                name="searchProductName"
+                className="form-input mb-3 px-5"
+              />
+
+              <label htmlFor="searchCategory">Product Category</label>
+              <select
+                onChange={this.inputHandler}
+                name="searchCategory"
+                className="form-input"
+              >
+                <option value="">All Items</option>
+                <option value="kaos">Kaos</option>
+                <option value="celana">Celana</option>
+                <option value="aksesoris">Aksesoris</option>
+              </select>
+              <button
+                onClick={this.searchButtonHandler}
+                className="bg-yellow-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 rounded-md  mt-3 p-2"
+              >
+                Search
+              </button>
+            </div>
           </div>
-        </main>
+
+          <div className="md:flex-shrink-0 mt-4 ">
+            <div className="text-start p-3 bg-gray-300">
+              <strong>Sort Product</strong>
+            </div>
+            <div className="flex flex-col bg-gray-100 p-5">
+              <select
+                onChange={this.inputHandler}
+                name="sortBy"
+                className="form-control"
+              >
+                <option value="">Default</option>
+                <option value="lowPrice">Lowest Price</option>
+                <option value="highPrice">Highest Price</option>
+                <option value="az">A-Z</option>
+                <option value="za">Z-A</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="md:flex-shrink-0">
+            <div className="flex flex-row justify-between p-7">
+              <button
+                disabled={this.state.page === 1}
+                className="bg-yellow-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 w-10 h-10 rounded-md"
+                onClick={this.prevPageHandler}
+              >
+                {"<"}
+              </button>
+              <div className="text-center items-center">
+                Page {this.state.page} of {this.state.maxPage}
+              </div>
+              <button
+                disabled={this.state.page === 4}
+                className="bg-yellow-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 w-10 h-10  rounded-md"
+                onClick={this.nextPageHandler}
+              >
+                {">"}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="md:flex mx-5 my-5 md:flex-row flex-wrap justify-between">
+          {this.renderProducts()}
+        </div>
       </div>
     );
   }

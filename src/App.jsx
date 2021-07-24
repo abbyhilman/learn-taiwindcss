@@ -31,7 +31,7 @@ class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <MyNavbar toggle={() => this.toggle()} />
+        <MyNavbar toggle={() => this.toggle()} isOpen={this.state.isOpen} />
         <DropDown isOpen={this.state.isOpen} toggle={() => this.toggle()} />
         <Switch>
           <Route component={Product} path="/product" />
