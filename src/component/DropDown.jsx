@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../redux/actions/user";
@@ -13,10 +13,6 @@ const DropDown = ({ toggle, isOpen }) => {
   const dispatch = useDispatch();
 
   const { user, cart } = useSelector((state) => state);
-
-  useEffect(() => {
-    dispatch(logoutUser());
-  }, [dispatch]);
 
   const logout = () => {
     dispatch(logoutUser());

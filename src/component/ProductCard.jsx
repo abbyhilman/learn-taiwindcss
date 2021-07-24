@@ -1,7 +1,7 @@
 import React from "react";
 import Axios from "axios";
 import { API_URL } from "../constants/API";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getCartData } from "../redux/actions/cart";
 
@@ -52,6 +52,7 @@ class ProductCard extends React.Component {
         <img
           src={this.props.productData.productImage}
           className="h-full rounded mb-20 shadow"
+          alt=""
         />
         <div className="flex flex-col justify-center items-center">
           <h2 className="text-xl mb-2">{this.props.productData.productName}</h2>

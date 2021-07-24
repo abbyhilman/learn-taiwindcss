@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../redux/actions/user";
@@ -13,10 +13,6 @@ const MyNavbar = ({ toggle, isOpen }) => {
   const dispatch = useDispatch();
 
   const { user, cart } = useSelector((state) => state);
-
-  useEffect(() => {
-    dispatch(logoutUser());
-  }, [dispatch]);
 
   const logout = () => {
     dispatch(logoutUser());
@@ -97,7 +93,7 @@ const MyNavbar = ({ toggle, isOpen }) => {
                         <Menu.Item>
                           {({ active }) => (
                             <a
-                              href="#"
+                              href="/cart"
                               className={classNames(
                                 active
                                   ? "bg-gray-100 text-gray-900"
@@ -112,7 +108,7 @@ const MyNavbar = ({ toggle, isOpen }) => {
                         <Menu.Item>
                           {({ active }) => (
                             <a
-                              href="#"
+                              href="/history"
                               className={classNames(
                                 active
                                   ? "bg-gray-100 text-gray-900"
@@ -128,7 +124,7 @@ const MyNavbar = ({ toggle, isOpen }) => {
                           <Menu.Item>
                             {({ active }) => (
                               <a
-                                href="#"
+                                href="/admin"
                                 className={classNames(
                                   active
                                     ? "bg-gray-100 text-gray-900"
@@ -141,24 +137,21 @@ const MyNavbar = ({ toggle, isOpen }) => {
                             )}
                           </Menu.Item>
                         ) : null}
-                        <form method="POST" action="#">
-                          <Menu.Item>
-                            {({ active }) => (
-                              <button
-                                type="submit"
-                                className={classNames(
-                                  active
-                                    ? "bg-gray-100 text-gray-900"
-                                    : "text-gray-700",
-                                  "block w-full text-left px-4 py-2 text-sm"
-                                )}
-                                onClick={() => logout()}
-                              >
-                                Logout
-                              </button>
-                            )}
-                          </Menu.Item>
-                        </form>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <button
+                              className={classNames(
+                                active
+                                  ? "bg-gray-100 text-gray-900"
+                                  : "text-gray-700",
+                                "block w-full text-left px-4 py-2 text-sm"
+                              )}
+                              onClick={() => logout()}
+                            >
+                              Logout
+                            </button>
+                          )}
+                        </Menu.Item>
                       </div>
                     </Menu.Items>
                   </Transition>
@@ -181,14 +174,4 @@ const MyNavbar = ({ toggle, isOpen }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    userGlobal: state.user,
-    cartGlobal: state.cart,
-  };
-};
-
-const mapDispatchToProps = {
-  logoutUser,
-};
 export default MyNavbar;

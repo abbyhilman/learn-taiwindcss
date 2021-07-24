@@ -10,6 +10,10 @@ const Home = () => {
   const [page, setPage] = useState(1);
   const [maxPage, setMaxPage] = useState(0);
 
+  useEffect(() => {
+    fetchProduct();
+  }, []);
+
   const fetchProduct = () => {
     Axios.get(`${API_URL}/products`)
       .then((res) => {
@@ -20,10 +24,6 @@ const Home = () => {
         alert("Terjadi Kesalahan di server");
       });
   };
-
-  useEffect(() => {
-    fetchProduct();
-  }, []);
 
   const renderProducts = () => {
     const beginningIndex = (page - 1) * itemPerPage;

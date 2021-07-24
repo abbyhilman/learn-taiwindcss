@@ -328,7 +328,35 @@
       "id": 20
     }
   ],
-  "carts": [],
+  "carts": [
+    {
+      "userId": 1,
+      "productId": 1,
+      "price": 25000,
+      "productName": "Kaos Polos Hitam",
+      "productImage": "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F76%2Fb9%2F76b9766522a63ae801ea85945b18ec9289e743de.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5Bmen_tshirtstanks_shortsleeve%5D%2Ctype%5BDESCRIPTIVESTILLLIFE%5D%2Cres%5Bm%5D%2Chmver%5B2%5D&call=url[file:/product/main]",
+      "quantity": 3,
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "productId": 2,
+      "price": 30000,
+      "productName": "Kaos Polos Putih",
+      "productImage": "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F2c%2F82%2F2c82435e88bb7a28468576feaa1fe7c99a2b9946.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5Bmen_tshirtstanks_shortsleeve%5D%2Ctype%5BDESCRIPTIVESTILLLIFE%5D%2Cres%5Bm%5D%2Chmver%5B2%5D&call=url[file:/product/zoom]&zoom=zoom",
+      "quantity": 1,
+      "id": 2
+    },
+    {
+      "userId": 1,
+      "productId": 3,
+      "price": 23000,
+      "productName": "Kaos Polos Abu - Abu",
+      "productImage": "https://lp2.hm.com/hmgoepprod%3Fset=quality%255B79%255D%252Csource%255B%252Ff0%252Fdd%252Ff0dd7c9425b4ca621f1775b9f4e0dc6b7bb1196b.jpg%255D%252Corigin%255Bdam%255D%252Ccategory%255Bmen_tshirtstanks_shortsleeve%255D%252Ctype%255BDESCRIPTIVESTILLLIFE%255D%252Cres%255Bm%255D%252Chmver%255B1%255D&call=url[file:/product/main]",
+      "quantity": 1,
+      "id": 3
+    }
+  ],
   "arrObjStr": [
     {
       "TR023412": {

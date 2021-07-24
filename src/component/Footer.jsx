@@ -9,8 +9,8 @@ const Footer = () => {
     //
     //   </div>
     // </footer>
-    <div class="relative h-32 w-32 ...">
-      <div class="absolute inset-x-0 bottom-0 flex justify-center items-center w-screen h-16 bg-black text-white">
+    <div className="relative h-32 w-32 ">
+      <div className="absolute insert-0 md:inset-x-0 bottom-0 flex justify-center items-center w-screen h-16 bg-black text-white">
         <p> Copyright @ {newDate.getFullYear()} EmmerceApp</p>
       </div>
     </div>
