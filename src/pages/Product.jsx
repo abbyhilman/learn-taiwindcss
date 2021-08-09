@@ -2,6 +2,8 @@ import React from "react";
 import ProductCard from "../component/ProductCard";
 import Axios from "axios";
 import { API_URL } from "../constants/API";
+import { Spinner } from "react-activity";
+import "react-activity/dist/Spinner.css";
 
 class Product extends React.Component {
   state = {
@@ -13,19 +15,23 @@ class Product extends React.Component {
     searchProductName: "",
     searchCategory: "",
     sortBy: "",
+    loading: false,
   };
 
   fetchProduct = () => {
+    this.setState({ loading: true });
     Axios.get(`${API_URL}/products`)
       .then((res) => {
         this.setState({
           productList: res.data,
           maxPage: Math.ceil(res.data.length / this.state.itemPerPage),
           filteredProductList: res.data,
+          loading: false,
         });
       })
       .catch((err) => {
         alert("Terjadi Kesalahan di server");
+        this.setState({ loading: false });
       });
   };
 
@@ -195,7 +201,18 @@ class Product extends React.Component {
         </div>
 
         <div className="md:flex mx-5 my-5 md:flex-row flex-wrap justify-between">
-          {this.renderProducts()}
+          {this.state.loading ? (
+            <div>
+              <Spinner
+                color="rgba(245, 158, 11)"
+                size={32}
+                speed={1}
+                animating={true}
+              />
+            </div>
+          ) : (
+            this.renderProducts()
+          )}
         </div>
       </div>
     );
