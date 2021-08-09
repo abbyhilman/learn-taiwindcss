@@ -9,6 +9,8 @@ import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import Admin from "./pages/Admin";
 import History from "./pages/History";
+import { Spinner } from "react-activity";
+import "react-activity/dist/Spinner.css";
 
 import { connect } from "react-redux";
 import { userKeepLogin, checkStorage } from "./redux/actions/user";
@@ -52,6 +54,16 @@ class App extends React.Component {
         <BrowserRouter>
           <MyNavbar toggle={() => this.toggle()} isOpen={this.state.isOpen} />
           <DropDown isOpen={this.state.isOpen} toggle={() => this.toggle()} />
+          {this.props.globalState.isLoading && (
+            <div className="flex justify-center mt-5">
+              <Spinner
+                color="rgba(245, 158, 11)"
+                size={32}
+                speed={1}
+                animating={true}
+              />
+            </div>
+          )}
           <Switch>
             <Route component={Product} path="/product" />
             <Route component={Login} path="/login" />
@@ -78,6 +90,7 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
   return {
     userGlobal: state.user,
+    globalState: state.global,
   };
 };
 

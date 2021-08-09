@@ -1,16 +1,16 @@
 import React from "react";
 import ProductCard from "../component/ProductCard";
-import Axios from "axios";
-import { API_URL } from "../constants/API";
-import { Spinner } from "react-activity";
 import "react-activity/dist/Spinner.css";
+import { setLoading } from "../redux/actions/global";
+import { getProduct } from "../redux/actions/product";
+import { connect } from "react-redux";
 
 class Product extends React.Component {
   state = {
-    productList: [],
+    // productList: [],
     filteredProductList: [],
     page: 1,
-    maxPage: 0,
+    maxPage: this.props.productState.maxPage,
     itemPerPage: 6,
     searchProductName: "",
     searchCategory: "",
@@ -18,22 +18,31 @@ class Product extends React.Component {
     loading: false,
   };
 
-  fetchProduct = () => {
-    this.setState({ loading: true });
-    Axios.get(`${API_URL}/products`)
-      .then((res) => {
-        this.setState({
-          productList: res.data,
-          maxPage: Math.ceil(res.data.length / this.state.itemPerPage),
-          filteredProductList: res.data,
-          loading: false,
-        });
-      })
-      .catch((err) => {
-        alert("Terjadi Kesalahan di server");
-        this.setState({ loading: false });
-      });
-  };
+  componentDidMount() {
+    // this.fetchProduct();
+    this.props.setLoading(true);
+    this.props.getProduct(this.state.itemPerPage);
+    this.setState({
+      filteredProductList: this.props.productState.productList,
+    });
+  }
+
+  // fetchProduct = () => {
+  //   this.setState({ loading: true });
+  //   Axios.get(`${API_URL}/products`)
+  //     .then((res) => {
+  //       this.setState({
+  //         productList: res.data,
+  //         maxPage: Math.ceil(res.data.length / this.state.itemPerPage),
+  //         filteredProductList: res.data,
+  //         loading: false,
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       alert("Terjadi Kesalahan di server");
+  //       this.setState({ loading: false });
+  //     });
+  // };
 
   renderProducts() {
     const beginningIndex = (this.state.page - 1) * this.state.itemPerPage;
@@ -99,16 +108,18 @@ class Product extends React.Component {
   };
 
   searchButtonHandler = () => {
-    const filteredProductList = this.state.productList.filter((val) => {
-      return (
-        val.productName
-          .toLowerCase()
-          .includes(this.state.searchProductName.toLowerCase().toString()) &&
-        val.category
-          .toLowerCase()
-          .includes(this.state.searchCategory.toLowerCase())
-      );
-    });
+    const filteredProductList = this.props.productState.productList.filter(
+      (val) => {
+        return (
+          val.productName
+            .toLowerCase()
+            .includes(this.state.searchProductName.toLowerCase().toString()) &&
+          val.category
+            .toLowerCase()
+            .includes(this.state.searchCategory.toLowerCase())
+        );
+      }
+    );
 
     this.setState({
       filteredProductList,
@@ -116,10 +127,6 @@ class Product extends React.Component {
       page: 1,
     });
   };
-
-  componentDidMount() {
-    this.fetchProduct();
-  }
 
   render() {
     return (
@@ -201,22 +208,22 @@ class Product extends React.Component {
         </div>
 
         <div className="md:flex mx-5 my-5 md:flex-row flex-wrap justify-between">
-          {this.state.loading ? (
-            <div>
-              <Spinner
-                color="rgba(245, 158, 11)"
-                size={32}
-                speed={1}
-                animating={true}
-              />
-            </div>
-          ) : (
-            this.renderProducts()
-          )}
+          {this.renderProducts()}
         </div>
       </div>
     );
   }
 }
 
-export default Product;
+const mapStateToProps = (state) => {
+  return {
+    productState: state.product,
+  };
+};
+
+const mapDispatchToProps = {
+  getProduct,
+  setLoading,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Product);
