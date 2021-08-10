@@ -3,12 +3,12 @@ import React from "react";
 const Cart = () => {
   return (
     <div className="flex flex-col h-screen">
-      <table class="table-fixed">
+      <table className="table-fixed">
         <thead>
           <tr>
-            <th class="w-1/2 ...">Title</th>
-            <th class="w-1/4 ...">Author</th>
-            <th class="w-1/4 ...">Views</th>
+            <th className="w-1/2 ...">Title</th>
+            <th className="w-1/4 ...">Author</th>
+            <th className="w-1/4 ...">Views</th>
           </tr>
         </thead>
         <tbody>
@@ -17,7 +17,7 @@ const Cart = () => {
             <td>Adam</td>
             <td>858</td>
           </tr>
-          <tr class="bg-blue-200">
+          <tr className="bg-blue-200">
             <td>
               A Long and Winding Tour of the History of UI Frameworks and Tools
               and the Impact on Design

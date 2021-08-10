@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../redux/actions/user";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
+import { useHistory } from "react-router-dom";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -11,12 +12,14 @@ function classNames(...classes) {
 
 const MyNavbar = ({ toggle, isOpen }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const { user, cart } = useSelector((state) => state);
 
-  const logout = () => {
+  function logout() {
+    history.push("/");
     dispatch(logoutUser());
-  };
+  }
   return (
     <nav
       className="flex justify-between items-center h-16 bg-white text-black relative shadow-sm font-mono"
