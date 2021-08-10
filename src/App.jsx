@@ -9,6 +9,7 @@ import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import Admin from "./pages/Admin";
 import History from "./pages/History";
+import Cart from "./pages/Cart";
 import { Bounce } from "react-activity";
 import "react-activity/dist/Bounce.css";
 
@@ -69,6 +70,7 @@ class App extends React.Component {
           )}
           <Switch>
             <Route component={Product} path="/product" />
+            <Route component={Cart} path="/cart" />
             <Route component={Login} path="/login" />
             <Route component={Register} path="/register" />
             <Route component={Admin} path="/admin" />
