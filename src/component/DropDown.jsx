@@ -63,7 +63,7 @@ const DropDown = ({ toggle, isOpen }) => {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            href="/cart"
                             className={classNames(
                               active
                                 ? "bg-gray-100 text-gray-900"
@@ -78,7 +78,7 @@ const DropDown = ({ toggle, isOpen }) => {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            href="/history"
                             className={classNames(
                               active
                                 ? "bg-gray-100 text-gray-900"
@@ -94,7 +94,7 @@ const DropDown = ({ toggle, isOpen }) => {
                         <Menu.Item>
                           {({ active }) => (
                             <a
-                              href="#"
+                              href="/admin"
                               className={classNames(
                                 active
                                   ? "bg-gray-100 text-gray-900"
