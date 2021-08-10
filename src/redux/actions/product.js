@@ -6,6 +6,7 @@ export const getProduct = (itemperPage) => (dispatch) => {
   Axios.get(`${API_URL}/products`)
     .then((res) => {
       dispatch(setLoading(false));
+      localStorage.setItem("productEmmerce", JSON.stringify(res.data));
       dispatch({
         type: "FETCH_PRODUCT",
         payload: res.data,

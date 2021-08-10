@@ -3,7 +3,7 @@ const initState = {
   maxPage: 0,
 };
 
-const productReducer = (state = initState, action) => {
+export default (state = initState, action) => {
   switch (action.type) {
     case "FETCH_PRODUCT":
       return {
@@ -16,5 +16,3 @@ const productReducer = (state = initState, action) => {
       return state;
   }
 };
-
-export default productReducer;

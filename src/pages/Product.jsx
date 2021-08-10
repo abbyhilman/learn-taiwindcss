@@ -22,9 +22,20 @@ class Product extends React.Component {
     // this.fetchProduct();
     this.props.setLoading(true);
     this.props.getProduct(this.state.itemPerPage);
-    this.setState({
-      filteredProductList: this.props.productState.productList,
-    });
+    if (this.state.filteredProductList.length == 0) {
+      this.props.setLoading(true);
+      const useLocalStorage = localStorage.getItem("productEmmerce");
+      const productData = JSON.parse(useLocalStorage);
+      this.setState({
+        filteredProductList: productData,
+        maxPage: Math.ceil(productData.length / this.state.itemPerPage),
+      });
+    } else {
+      this.setState({
+        filteredProductList: this.props.productState.productList,
+        maxPage: this.props.productState.maxPage,
+      });
+    }
   }
 
   // fetchProduct = () => {
