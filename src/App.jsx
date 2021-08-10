@@ -9,8 +9,8 @@ import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import Admin from "./pages/Admin";
 import History from "./pages/History";
-import { Spinner } from "react-activity";
-import "react-activity/dist/Spinner.css";
+import { Bounce } from "react-activity";
+import "react-activity/dist/Bounce.css";
 
 import { connect } from "react-redux";
 import { userKeepLogin, checkStorage } from "./redux/actions/user";
@@ -55,9 +55,12 @@ class App extends React.Component {
           <MyNavbar toggle={() => this.toggle()} isOpen={this.state.isOpen} />
           <DropDown isOpen={this.state.isOpen} toggle={() => this.toggle()} />
           {this.props.globalState.isLoading && (
-            <div className="flex justify-center mt-5">
-              <Spinner
-                color="rgba(245, 158, 11)"
+            <div
+              className="flex justify-center items-center h-screen w-screen mt-5 absolute"
+              style={{ backgroundColor: "rgba(255,255,255,0.5)" }}
+            >
+              <Bounce
+                color="rgba(245, 118, 11)"
                 size={32}
                 speed={1}
                 animating={true}
