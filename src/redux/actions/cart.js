@@ -24,3 +24,19 @@ export const getCartData = (userId) => {
       });
   };
 };
+
+export const deleteCart = (id) => {
+  return (dispatch) => {
+    dispatch(setLoading(true));
+    Axios.delete(`${API_URL}/cart/${id}`).then(() => {
+      dispatch(setLoading(false));
+      dispatch({
+        type: "DELETE_CART",
+        payload: getCartData(),
+      }).catch((err) => {
+        dispatch(setLoading(false));
+        alert("terjadi kesalahan diserver!");
+      });
+    });
+  };
+};

@@ -9,6 +9,11 @@ const reducer = (state = initState, action) => {
         ...state,
         cartList: action.payload,
       };
+    case "DELETE_CART":
+      return {
+        ...state,
+        ...action.payload,
+      };
     default:
       return state;
     //   break;
